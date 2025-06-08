@@ -1,41 +1,43 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const cityInput = document.querySelector("#city-input");
-  const getWeatherBtn = document.querySelector("#get-weather-button");
-  const weatherDetails = document.querySelector("#weather-info");
-  const showCity = document.querySelector("#city-name");
-  const showTemp = document.querySelector("#temperature");
-  const showDescription = document.querySelector("#description");
-  const showErrorMsg = document.querySelector("#error-message");
+document.addEventListener("DOMContentLoaded", () => {
+  const inputCity = document.querySelector("#input-city");
+  const getWeatherBtn = document.querySelector("#get-weather-btn");
+  const getWeatherInfoDisplay = document.querySelector("#get-weather-info");
+  const errorMessageDisplay = document.querySelector("#error-message");
   const API_KEY = "c557c46c738738c93009cf1a39350d45";
 
   getWeatherBtn.addEventListener("click", async () => {
-    const city = cityInput.value.trim();
-    if (!city) return;
+    const city = inputCity.value.trim();
     try {
-      const data = await fetchWeatherData(city);
-      displayWeatherData(data);
+      const data = await getWeather(city);
+      showWeather(data);
     } catch (error) {
-      showError();
+      showErrorOnFetch();
     }
   });
-  async function fetchWeatherData(city) {
-    const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
-    const response = await fetch(URL);
-    if (!response.ok) throw new Error("City Not Found");
+  async function getWeather(city) {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Response not found");
+    }
     const data = await response.json();
     console.log(data);
     return data;
   }
-  function displayWeatherData(data) {
-    weatherDetails.classList.remove("hidden");
-    showErrorMsg.classList.add("hidden");
-    const { main, name, weather } = data;
-    showCity.textContent = name;
-    showTemp.textContent = "Temperature: " + main.temp + "°C";
-    showDescription.textContent = "Looks like: " + weather[0].description;
+  function showWeather(weatherData) {
+    getWeatherInfoDisplay.classList.remove("hidden");
+    errorMessageDisplay.classList.add("hidden");
+    const { name, main, weather } = weatherData;
+    getWeatherInfoDisplay.querySelector("#city-name").textContent = name;
+    getWeatherInfoDisplay.querySelector(
+      "#temperature"
+    ).textContent = `Temperature : ${main.temp} °C`;
+    getWeatherInfoDisplay.querySelector(
+      "#describe"
+    ).textContent = `Description : ${weather[0].description}`;
   }
-  function showError() {
-    weatherDetails.classList.add("hidden");
-    showErrorMsg.classList.remove("hidden");
+  function showErrorOnFetch() {
+    getWeatherInfoDisplay.classList.add("hidden");
+    errorMessageDisplay.classList.remove("hidden");
   }
 });

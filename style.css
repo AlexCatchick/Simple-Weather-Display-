@@ -1,0 +1,203 @@
+/* Base Styles (same as before) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+main {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.input-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.input-container input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.input-container input:focus {
+  border-color: #446d45;
+  outline: none;
+}
+
+.input-container button {
+  padding: 10px 15px;
+  background-color: #446d45;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.input-container button:hover {
+  background-color: #633d4c;
+}
+
+#get-weather-info {
+  background: #fff5f5;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+#get-weather-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+#get-weather-info p {
+  font-size: 1rem;
+  color: #444;
+}
+
+#error-message {
+  margin-top: 15px;
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 🌙 Dark Mode Styles */
+body.dark-mode {
+  background: linear-gradient(135deg, #232526, #414345);
+  color: #eee;
+}
+
+body.dark-mode main {
+  background: #1e1e1e;
+  /* color: #eee; */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode main h1 {
+  color: #fff5f5;
+}
+body.dark-mode #get-weather-info > h2 {
+    color : #fff5f5;
+}
+body.dark-mode #get-weather-info > p {
+    color : #cecbcb;
+}
+
+body.dark-mode .input-container input {
+  background-color: #2c2c2c;
+  border: 2px solid #444;
+  color: #eee;
+}
+
+body.dark-mode .input-container input::placeholder {
+  color: #bbb;
+}
+
+body.dark-mode #get-weather-info {
+  background: #2b2b2b;
+}
+
+body.dark-mode .input-container button {
+  background-color: #446d45;
+}
+
+body.dark-mode .input-container button:hover {
+  background-color: #633d4c;
+}
+
+/* Toggle Switch */
+.mode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.toggle-label {
+  margin-left: 10px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+body.dark-mode .toggle-label {
+  color: #ccc;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #633d4c;
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}

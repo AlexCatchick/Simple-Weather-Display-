@@ -2,22 +2,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Weather Forcast</title>
+    <script>
+      window.onload = function () {
+        const toggle = document.getElementById("darkModeToggle");
+        toggle.addEventListener("change", function () {
+          document.body.classList.toggle("dark-mode");
+        });
+      };
+    </script>
   </head>
   <body>
-    <div class="container">
-      <div class="input-container">
-        <input type="text" id="city-input" placeholder="Enter City Name" style="text-align: center;"/>
-        <button id="get-weather-button">Get Weather</button>
+    <main>
+      <div class="mode-toggle">
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle" />
+          <span class="slider round"></span>
+        </label>
+        <span class="toggle-label">Dark Mode</span>
       </div>
-    </div>
-    <div id="weather-info" class="hidden">
-      <h2 id="city-name"></h2>
-      <p id="temperature"></p>
-      <p id="description"></p>
-    </div>
-    <p id="error-message" class="hidden">City Not Found. Please try again.</p>
+      <h1>Weather App</h1>
+      <div class="input-container">
+        <input type="text" id="input-city" placeholder="Enter city name" />
+        <button id="get-weather-btn">Click</button>
+      </div>
+      <div id="get-weather-info" class="hidden">
+        <h2 id="city-name"></h2>
+        <p id="temperature"></p>
+        <p id="describe"></p>
+      </div>
+      <p id="error-message" class="hidden">City not Found. Try again!</p>
+    </main>
     <script src="app.js"></script>
   </body>
 </html>
